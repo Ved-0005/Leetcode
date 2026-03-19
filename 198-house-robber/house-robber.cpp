@@ -1,15 +1,15 @@
 class Solution {
 public:
-int maxAmount(vector<int>& nums,int idx,vector<int>& dp){
-    if(idx>=nums.size()) return 0;
-    if(dp[idx]!=-1) return dp[idx];
-    int skip=maxAmount(nums,idx+1,dp);
-    int get=nums[idx]+maxAmount(nums,idx+2,dp);
-    return dp[idx]=max(get,skip);
-}
     int rob(vector<int>& nums) {
-        vector<int>dp(101,-1);
-        return maxAmount(nums,0,dp);
-        
+        int n=nums.size();
+        vector<int>dp(n);
+        if(n==1) return nums[0];
+        if(n==2) return max(nums[0],nums[1]);
+        dp[n-1]=nums[n-1];
+        dp[n-2]=max(nums[n-1],nums[n-2]);
+        for(int i=n-3;i>=0;i--){
+            dp[i]=max(dp[i+1],nums[i]+dp[i+2]);
+        }
+        return dp[0];
     }
 };
