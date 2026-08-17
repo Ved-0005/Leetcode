@@ -6,7 +6,7 @@ int maxLoot(vector<int>& nums,int idx,vector<int>& dp,int size){
     int skip=INT_MIN,take=INT_MIN;
     if(dp[idx]!=-1) return dp[idx];
      skip=maxLoot(nums,idx+1,dp,size);
-    if(idx<=size) take=nums[idx]+maxLoot(nums,idx+2,dp,size);
+     take=nums[idx]+maxLoot(nums,idx+2,dp,size);
     return dp[idx]=max(skip,take);
 }
     int rob(vector<int>& nums) {
